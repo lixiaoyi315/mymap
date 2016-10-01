@@ -1,0 +1,18 @@
+---
+title: "My Map"
+author: "xiaoyi_Li"
+date: "2016-10-1"
+output: html_document
+---
+
+```{r,echo=FALSE,eval=TRUE}
+library(baidumap)
+library(leaflet)
+adress<-c("中山陵","总统府","雨花台","南京大屠杀纪念馆","新街口","玄武湖","莫愁湖","灵谷寺","南京博物馆","紫金山天文台")
+adress<-getCoordinate(adress,formatted = T)
+spot<-data.frame(name=c("Zhongshan Park","The Presidential Palace","Yuhua Plat","Nanjing massacre museum
+","Xinjiekou","Xuanwu Park","Mochou Park","Linggu Temple","Nanjing Museum","Purple Mountain Observatory"),lon=adress[,1],lat=adress[,2],col=c("green","blue","red","blue","blue","blue","blue","green","blue","green"))
+spot %>% leaflet() %>% addTiles() %>%  addCircleMarkers(popup=spot$name,color=spot$col)
+
+```
+
